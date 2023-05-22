@@ -8,9 +8,9 @@ def get_filtered_image(image,action):
     elif action == 'COLORIZED':
         filtered = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
     elif action == 'GRAYSCALE':
-        FILTERD = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+        filtered = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
     elif action == 'BLURRED':
-        width, height =img.shape[:2]
+        width,height =img.shape[:2]
         if width >500:
             k =(50,50)
         elif width > 200 and width <=500:

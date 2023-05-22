@@ -2,6 +2,8 @@ from django.db import models
 from .utils import get_filtered_image
 import numpy as np
 from io import BytesIO
+from PIL import Image
+from django.core.files.base import ContentFile
 # Create your models here.
 ACTION_CHOICES=(
     ('NO_FILTER','no filter'),
@@ -31,4 +33,6 @@ class Upload(models.Model):
         im_pil=Image.open(self.image)
         buffer=BytesIO()
         im_pil.save(buffer,format="png")
-        
+        image_png=buffer.getvalue()
+        self.image.save(str(self.image),ContentFile(image_png),save=False)
+        super().save(*args,**kwargs)
